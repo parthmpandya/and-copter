@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Main!</string>
+    <string name="app_name">andCopter</string>
+    
+    <string name="new_game_button_text">Play</string>
+    <string name="scores_button_text">Scores</string>
+</resources>
