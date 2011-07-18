@@ -1,9 +1,8 @@
-package com.shaubert.andcopter;
+package com.shaubert.andcopter.trial;
+
+import com.shaubert.andcopter.Mesh;
 
 public class Plane extends Mesh {
-    
-    private float height;
-    private float width;
     
     public Plane() {
         this(1, 1, 1, 1);
@@ -15,9 +14,6 @@ public class Plane extends Mesh {
      
     public Plane(float width, float height, int widthSegments,
             int heightSegments) {
-        this.width = width;
-        this.height = height;
-        
         float[] vertices = new float[(widthSegments + 1) * (heightSegments + 1) * 3];
         short[] indices = new short[(widthSegments + 1) * (heightSegments + 1) * 6];
         float[] textureCoordinates = new float[vertices.length * 2 / 3];
@@ -59,13 +55,5 @@ public class Plane extends Mesh {
         setIndices(indices);
         setVertices(vertices);
         setTextureCoordinates(textureCoordinates);
-    }
-    
-    public float getWidth() {
-        return width;
-    }
-    
-    public float getHeight() {
-        return height;
     }
 }

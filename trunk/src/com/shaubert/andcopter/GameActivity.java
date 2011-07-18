@@ -2,11 +2,14 @@ package com.shaubert.andcopter;
 
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
+import android.opengl.GLSurfaceView.Renderer;
 import android.os.Bundle;
+import android.view.MotionEvent;
 
 public class GameActivity extends Activity {
 
     private GLSurfaceView glSurface;
+    private Renderer gameRenderer;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,13 @@ public class GameActivity extends Activity {
     }
     
     private void setup() {
-        glSurface.setRenderer(new GameRenderer(this));
+        gameRenderer = new NativeRenderer();
+        glSurface.setRenderer(gameRenderer);
+//        glSurface.setOnKeyListener(gameRenderer);
+    }
+    
+    @Override
+    public boolean onTrackballEvent(MotionEvent event) {
+        return /*gameRenderer.onTrackballEvent(event) || */super.onTrackballEvent(event);
     }
 }

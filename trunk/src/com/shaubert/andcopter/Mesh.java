@@ -10,7 +10,7 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class Mesh {
+public abstract class Mesh {
 
     private FloatBuffer verticesBuffer;
     private ShortBuffer indicesBuffer;
@@ -23,13 +23,20 @@ public class Mesh {
     private Bitmap mBitmap;
     private boolean shouldLoadTexture;
     
-    public float x = 0;
-    public float y = 0;
-    public float z = 0;
+    protected float minX;
+    protected float maxX;
+    protected float minY;
+    protected float maxY;
+    protected float minZ;
+    protected float maxZ;
+    
+    protected float x = 0;
+    protected float y = 0;
+    protected float z = 0;
  
-    public float rx = 0;
-    public float ry = 0;
-    public float rz = 0;
+    protected float rx = 0;
+    protected float ry = 0;
+    protected float rz = 0;
     
     public void draw(GL10 gl) {
         //Counter-clockwise winding.
@@ -83,6 +90,8 @@ public class Mesh {
         verticesBuffer = vbb.asFloatBuffer();
         verticesBuffer.put(vertices);
         verticesBuffer.position(0);
+        
+        calculateBounds(vertices);
     }
      
     protected void setIndices(short[] indices) {
@@ -158,5 +167,53 @@ public class Mesh {
         this.rx = rx;
         this.ry = ry;
         this.rz = rz;
+    }
+    
+    private void calculateBounds(float[] vertices) {
+        minX = maxX = vertices[0];
+        minY = maxY = vertices[1];
+        minZ = maxZ = vertices[2];
+        int pos = 3;
+        while (pos + 2 < vertices.length) {
+            minX = Math.min(minX, vertices[pos]);
+            maxX = Math.max(maxX, vertices[pos]);
+            pos++;
+            
+            minY = Math.min(minY, vertices[pos]);
+            maxY = Math.max(maxY, vertices[pos]);
+            pos++;
+            
+            minZ = Math.min(minZ, vertices[pos]);
+            maxZ = Math.max(maxZ, vertices[pos]);
+            pos++;
+        }
+    }
+    
+    public float getLeft() {
+        return minX + x;
+    }
+    
+    public float getRight() {
+        return maxX + x; 
+    }
+    
+    public float getBottom() {
+        return minY + y;
+    }
+    
+    public float getTop() {
+        return maxY + y;
+    }
+    
+    public float getWidth() {
+        return getRight() - getLeft();
+    }
+    
+    public float getHeight() {
+        return getTop() - getBottom();
+    }
+
+    public boolean has2DCollision(Mesh mesh) {
+        return mesh.getLeft() <= getRight() && mesh.getRight() >= getLeft() && mesh.getTop() >= getBottom() && mesh.getBottom() <= getTop();
     }
 }

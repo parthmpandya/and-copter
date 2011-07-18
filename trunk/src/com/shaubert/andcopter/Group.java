@@ -54,6 +54,52 @@ public class Group extends Mesh{
         }
     }
 
+    @Override
+    public float getLeft() {
+        if (meshs.isEmpty()) {
+            return x;
+        }
+        minX = meshs.get(0).getLeft();
+        for (Mesh mesh : meshs) {
+            minX = Math.min(minX, mesh.getLeft());
+        }
+        return minX + x;
+    }
+    
+    @Override
+    public float getRight() {
+        if (meshs.isEmpty()) {
+            return x;
+        }
+        maxX = meshs.get(0).getRight();
+        for (Mesh mesh : meshs) {
+            maxX = Math.max(maxX, mesh.getRight());
+        }
+        return maxX + x;    }
+    
+    @Override
+    public float getBottom() {
+        if (meshs.isEmpty()) {
+            return y;
+        }
+        minY = meshs.get(0).getBottom();
+        for (Mesh mesh : meshs) {
+            minY = Math.min(minY, mesh.getBottom());
+        }
+        return minY + y;
+    }
+    
+    @Override
+    public float getTop() {
+        if (meshs.isEmpty()) {
+            return y;
+        }
+        maxY = meshs.get(0).getTop();
+        for (Mesh mesh : meshs) {
+            maxY = Math.max(maxY, mesh.getTop());
+        }
+        return maxY + y;
+    }
     
     @Override
     public void draw(GL10 gl) {

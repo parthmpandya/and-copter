@@ -1,4 +1,7 @@
-package com.shaubert.andcopter;
+package com.shaubert.andcopter.trial;
+
+import com.shaubert.andcopter.Group;
+import com.shaubert.andcopter.Triangle;
 
 public class Circle extends Group {
 
