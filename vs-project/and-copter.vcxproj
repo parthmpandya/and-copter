@@ -88,6 +88,7 @@
     <ClInclude Include="..\jni\baby-engine\List.h" />
     <ClInclude Include="..\jni\baby-engine\Log.h" />
     <ClInclude Include="..\jni\baby-engine\Mesh.h" />
+    <ClInclude Include="..\jni\baby-engine\Quad.h" />
     <ClInclude Include="..\jni\baby-engine\Renderer.h" />
     <ClInclude Include="..\jni\baby-engine\RGBA.h" />
     <ClInclude Include="..\jni\baby-engine\Triangle.h" />

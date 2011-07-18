@@ -18,7 +18,7 @@ private:
 	}
 
 	void init(int segmentsByDimension, Vec3f point1, Vec3f point2, Vec3f point3) {
-		int verticesCount = (segmentsByDimension + 1) * ((segmentsByDimension + 1) + 2) / 2;
+		int verticesCount = (segmentsByDimension + 1) * (segmentsByDimension + 2) / 2;
 		Vec3f *vertices = new Vec3f[verticesCount];
 		int indicesCount = segmentsByDimension * segmentsByDimension * 3;
 		unsigned short *indices = new unsigned short[indicesCount];
@@ -39,9 +39,10 @@ private:
 			for (int i = 0; i <= j; i++) {
 				float part2 = j == 0 ? 0 : ((float)i / j);
 				vertices[vCounter].Set(
-					getPart(leftPoint.x, rightPoint.y, part2), 
+					getPart(leftPoint.x, rightPoint.x, part2), 
 					getPart(leftPoint.y, rightPoint.y, part2),
 					getPart(leftPoint.z, rightPoint.z, part2));
+				vertices[vCounter].Log();
 				
 				if (j < segmentsByDimension) {
 					indices[iCounter++] = vCounter;

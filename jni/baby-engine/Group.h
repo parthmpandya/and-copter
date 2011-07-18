@@ -23,10 +23,6 @@ protected:
 
 public:
 
-	Group(void)
-	{
-	}
-
 	virtual ~Group(void)
 	{
 		for (Iterator i = meshs; meshs.HasNext(i); meshs.Next(i)) {

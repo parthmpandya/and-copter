@@ -29,6 +29,14 @@ protected:
 	
 public:
 
+	Renderer() :
+	  width(0),
+	  height(0),
+	  fov_y(0),
+	  z_distance(0)
+	{
+	}
+
 	virtual void onCreate() = 0;
 	virtual void onSurfaceChange(int width, int height) = 0;
 	virtual void onDraw() = 0;
