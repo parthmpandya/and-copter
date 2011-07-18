@@ -1,4 +1,6 @@
-package com.shaubert.andcopter;
+package com.shaubert.andcopter.trial;
+
+import com.shaubert.andcopter.Group;
 
 
 public class Cube extends Group {

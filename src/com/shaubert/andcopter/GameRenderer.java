@@ -3,23 +3,22 @@ package com.shaubert.andcopter;
 import android.content.Context;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnKeyListener;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class GameRenderer implements Renderer {
+public class GameRenderer implements Renderer, OnKeyListener {
 
     private static final float FOV_Y = 45.0f;
     private static final int CAMERA_Z = -2; 
     
-    private Mesh mesh;
-    private float angle;
-    private Light light;
+    private Game game;
     
     public GameRenderer(Context context) {        
-//        mesh = new Cube(1, 1, 1);        
-//        mesh.setBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.icon));
-//        light = new Light(1f, 1f, -2f, 1f);
     }
     
     @Override
@@ -29,10 +28,6 @@ public class GameRenderer implements Renderer {
         gl.glEnable(GL10.GL_DEPTH_TEST);
         gl.glDepthFunc(GL10.GL_LEQUAL);
         gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST);
-        
-        if (light != null) {
-            light.apply(gl);
-        }
     }
 
     @Override
@@ -46,7 +41,7 @@ public class GameRenderer implements Renderer {
         gl.glLoadIdentity();
         
         float gameHeight = (float)(-CAMERA_Z * Math.tan(Math.toRadians(FOV_Y / 2))) * 2; 
-        mesh = new Game(gameHeight * aspect, gameHeight);
+        game = new Game(gameHeight * aspect, gameHeight);
     }
     
     @Override
@@ -54,10 +49,37 @@ public class GameRenderer implements Renderer {
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         
         gl.glTranslatef(0, 0, CAMERA_Z);
-//        gl.glRotatef(angle, 1.0f, 0.3f, 1.0f);
-        mesh.draw(gl);
+        game.draw(gl);
         gl.glLoadIdentity();
-//        angle += 5f;
     }
 
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (game != null && event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_DPAD_UP:
+                    game.moveHelicopterUp();
+                    return true;
+                case KeyEvent.KEYCODE_DPAD_DOWN:
+                    game.moveHelicopterDown();
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean onTrackballEvent(MotionEvent event) {
+        if (game != null && event.getAction() == MotionEvent.ACTION_MOVE && event.getHistorySize() > 1) {
+            float dy = event.getY();
+            if (dy != 0) {
+                if (dy < 0) {
+                    game.moveHelicopterUp();
+                } else {
+                    game.moveHelicopterDown();
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 }
