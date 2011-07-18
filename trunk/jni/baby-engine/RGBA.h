@@ -5,15 +5,20 @@ public:
 
 	float r, g, b, a;
 
-	RGBA(void)
+	RGBA(void) :
+		r(0),
+		g(0),
+		b(0),
+		a(0)
 	{
 	}
 
-	RGBA(float R, float G, float B, float A) {
-		a = A;
-		g = G;
-		b = B;
-		a = A;
+	RGBA(float R, float G, float B, float A)  :
+		r(R),
+		g(G),
+		b(B),
+		a(A)
+	{
 	}
 
 	operator float*() { 

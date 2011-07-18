@@ -59,5 +59,8 @@
     <ClInclude Include="..\jni\baby-engine\Triangle.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\jni\baby-engine\Quad.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

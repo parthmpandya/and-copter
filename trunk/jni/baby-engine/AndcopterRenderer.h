@@ -10,8 +10,9 @@ protected:
 
 public:
 
-	AndcopterRenderer() {
-		game = 0;
+	AndcopterRenderer() :
+	  game(0)
+	{
 		fov_y = 45.0f;
 		z_distance = -2;
 	}

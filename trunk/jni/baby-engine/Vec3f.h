@@ -9,7 +9,11 @@ class Vec3f
   public:
 	float x, y, z;
 
-	Vec3f(void) {
+	Vec3f(void) :
+		x(0),
+		y(0),
+		z(0)
+	{
 	};
 
 	Vec3f(const float X, const float Y, const float Z) {

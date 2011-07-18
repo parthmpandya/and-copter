@@ -22,28 +22,14 @@ void Mesh::draw() {
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 
-	GLfloat *vertices = new GLfloat[9];
-	int vertexIndicesCount = 3;	
-	GLushort *vertexIndices = new GLushort[vertexIndicesCount];
-
-	vertices[0] = 0; vertices[1] = 1; vertices[2] = 0;
-	vertices[3] = -0.5f; vertices[4] = -1; vertices[5] = 0;
-	vertices[6] = 0.5f; vertices[7] = -1; vertices[8] = 0;
-
-	vertexIndices[0] = 0;
-	vertexIndices[1] = 1;
-	vertexIndices[2] = 2;
-
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3, GL_FLOAT, 0, vertices);
-	/*
-	if (colorBuffer) {
+	if (colorBuffer && colorsCount > 0) {
 		glEnableClientState(GL_COLOR_ARRAY);
 		glColorPointer(4, GL_FLOAT, 0, colorBuffer);
 	} else {
 		glColor4f(color.r, color.g, color.b, color.a);
 	}
-	*/
 	glPushMatrix();
 
 	glTranslatef(translation.x, translation.y, translation.z);
@@ -54,14 +40,10 @@ void Mesh::draw() {
 	glDrawElements(GL_TRIANGLES, vertexIndicesCount, GL_UNSIGNED_SHORT, vertexIndices);
 
 	glPopMatrix();
-
 	if (colorBuffer) {
 		glDisableClientState(GL_COLOR_ARRAY);
 	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_CULL_FACE);
-
-	delete[] vertices;
-	delete[] vertexIndices;
 }

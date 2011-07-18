@@ -30,11 +30,19 @@ protected:
 public:
 
 	Mesh(void) :
-		leftTop(0, 0, 0),
-		rightBottom(0, 0, 0),
-		translation(0, 0, 0),
-		rotation(0, 0, 0)		
+	  leftTop(0,0,0),
+	  rightBottom(0,0,0),
+	  translation(0,0,0),
+	  rotation(0,0,0),
+	  verticesCount(0),
+	  vertices(0),
+	  vertexIndicesCount(0),
+	  vertexIndices(0),
+	  color(1,1,1,1),
+	  colorsCount(0),
+	  colorBuffer(0)
 	{
+		LOGD("colorBuffer=%d", colorBuffer);
 	}
 
 	virtual ~Mesh(void) {
