@@ -13,7 +13,7 @@ void AndcopterRenderer::onSurfaceChange(int width, int height) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	float aspect = (float) width / height;
-	gluPerspective(fov_y, aspect, z_distance, 100.0f);
+	gluPerspective(fov_y, aspect, 0.1f, 10.0f);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
@@ -29,7 +29,10 @@ void AndcopterRenderer::onSurfaceChange(int width, int height) {
 
 void AndcopterRenderer::onDraw() {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+	
+	glTranslatef(0, 0, z_distance);
 	if (game) {
 		game->draw();
 	}
+	glLoadIdentity();
 }

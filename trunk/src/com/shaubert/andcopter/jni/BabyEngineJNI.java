@@ -9,6 +9,7 @@ public class BabyEngineJNI {
     private native void nativeOnSurfaceCreate();
     private native void nativeOnSurfaceChange(int width, int height);
     private native void nativeOnDraw();
+    private native void nativeMoveHelicopter(float dy);
     private native void nativeRelease();
     private native void nativeSetLogging(boolean on);
     
@@ -32,4 +33,7 @@ public class BabyEngineJNI {
         nativeSetLogging(on);
     }
 
+    public void moveHelicopter(float dy) {
+        nativeMoveHelicopter(dy);
+    }
 }

@@ -25,8 +25,9 @@ LOCAL_SRC_FILES :=  \
 	BabyEngineJni.cpp \
 	AndcopterRenderer.cpp \
 	Game.cpp \
-	Mesh.cpp
+	Mesh.cpp \
+	Rocks.cpp
 
-LOCAL_LDLIBS := -llog -lGLESv1_CM
+LOCAL_LDLIBS := -llog -lGLESv1_CM -lc
 	
 include $(BUILD_SHARED_LIBRARY)

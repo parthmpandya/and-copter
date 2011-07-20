@@ -80,6 +80,7 @@
     <ClCompile Include="..\jni\baby-engine\BabyEngineJni.cpp" />
     <ClCompile Include="..\jni\baby-engine\Game.cpp" />
     <ClCompile Include="..\jni\baby-engine\Mesh.cpp" />
+    <ClCompile Include="..\jni\baby-engine\Rocks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\baby-engine\AndcopterRenderer.h" />
@@ -89,8 +90,10 @@
     <ClInclude Include="..\jni\baby-engine\Log.h" />
     <ClInclude Include="..\jni\baby-engine\Mesh.h" />
     <ClInclude Include="..\jni\baby-engine\Quad.h" />
+    <ClInclude Include="..\jni\baby-engine\Random.h" />
     <ClInclude Include="..\jni\baby-engine\Renderer.h" />
     <ClInclude Include="..\jni\baby-engine\RGBA.h" />
+    <ClInclude Include="..\jni\baby-engine\Rocks.h" />
     <ClInclude Include="..\jni\baby-engine\Triangle.h" />
     <ClInclude Include="..\jni\baby-engine\Vec3f.h" />
   </ItemGroup>
