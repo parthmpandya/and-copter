@@ -42,7 +42,6 @@ public:
 	  colorsCount(0),
 	  colorBuffer(0)
 	{
-		LOGD("colorBuffer=%d", colorBuffer);
 	}
 
 	virtual ~Mesh(void) {
@@ -122,8 +121,16 @@ public:
 		this->vertexIndicesCount = count;
 	}
 
-	virtual void draw();
+	virtual bool has2DCollision(Mesh* mesh) {
+		Vec3f mLT = mesh->getLeftTop();
+		Vec3f mRB = mesh->getRightBottom();
+		Vec3f LT = getLeftTop();
+		Vec3f RB = getRightBottom();
+		return mLT.x <= RB.x && mRB.x >= LT.x && 
+			mLT.y <= RB.y && mRB.y >= LT.y;
+	}
 
+	virtual void draw();
 };
 
 #endif

@@ -42,7 +42,6 @@ private:
 					getPart(leftPoint.x, rightPoint.x, part2), 
 					getPart(leftPoint.y, rightPoint.y, part2),
 					getPart(leftPoint.z, rightPoint.z, part2));
-				vertices[vCounter].Log();
 				
 				if (j < segmentsByDimension) {
 					indices[iCounter++] = vCounter;

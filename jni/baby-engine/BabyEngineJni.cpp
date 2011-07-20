@@ -3,7 +3,7 @@
 
 #include "AndcopterRenderer.h"
 
-static Renderer* renderer = 0;
+static AndcopterRenderer* renderer = 0;
 
 JNIEXPORT
 void onSurfaceCreate(JNIEnv* env, jobject thiz) {
@@ -30,6 +30,14 @@ void onDraw(JNIEnv* env, jobject thiz) {
 }
 
 JNIEXPORT
+void moveHelicopter(JNIEnv* env, jobject thiz, jfloat dy) {
+	if (renderer && renderer->getGame()) {
+		renderer->getGame()->moveHelicopter(dy);
+	}
+}
+
+
+JNIEXPORT
 void release(JNIEnv* env, jobject thiz) {
 	LOGD("release()");
 	if (renderer) {
@@ -43,12 +51,13 @@ void setLoggingJni(JNIEnv* env, jobject thiz, jboolean on) {
 	setLogging(on);
 }
 
-int methodsCount = 4;
+int methodsCount = 6;
 JNINativeMethod methods[] = {
 	{"nativeOnSurfaceCreate", "()V", (void*)onSurfaceCreate },
 	{"nativeOnSurfaceChange", "(II)V",	(void*)onSurfaceChange },
 	{"nativeOnDraw", "()V",	(void*)onDraw },
 	{"nativeRelease", "()V", (void*)release },
+	{"nativeMoveHelicopter", "(F)V", (void*)moveHelicopter },
 	{"nativeSetLogging", "(Z)V", (void*)setLoggingJni }
 };
 const char *classPathName = "com/shaubert/andcopter/jni/BabyEngineJNI";

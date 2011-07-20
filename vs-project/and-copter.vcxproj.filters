@@ -27,6 +27,9 @@
     <ClCompile Include="..\jni\baby-engine\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\baby-engine\Rocks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\baby-engine\Log.h">
@@ -60,6 +63,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\baby-engine\Quad.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\baby-engine\Rocks.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\baby-engine\Random.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

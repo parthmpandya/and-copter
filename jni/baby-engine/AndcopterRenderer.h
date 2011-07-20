@@ -23,6 +23,10 @@ public:
 		}
 	}
 
+	Game* getGame() {
+		return game;
+	}
+
 	virtual void onCreate();	
 	virtual void onSurfaceChange(int width, int height);
 	virtual void onDraw();
