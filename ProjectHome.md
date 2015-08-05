@@ -1,0 +1,1 @@
+OpenGL game for Android. You control a damaged helicopter by touches and trying to avoid collision with the rocks.
